@@ -11,17 +11,20 @@ public class UserController : ControllerBase
     private readonly IScopedUserService _scopedUserService;
     private readonly ITransientUserService _transientUserService;
     private readonly NoInterfaceUserService _noInterfaceUserService;
+    private readonly IUserRepository _userRepository;
 
     public UserController(
         ISingletonUserService singletonUserService,
         IScopedUserService scopedUserService,
         ITransientUserService transientUserService,
-        NoInterfaceUserService noInterfaceUserService)
+        NoInterfaceUserService noInterfaceUserService,
+        IUserRepository userRepository)
 	{
         _singletonUserService = singletonUserService;
         _scopedUserService = scopedUserService;
         _transientUserService = transientUserService;
         _noInterfaceUserService = noInterfaceUserService;
+        _userRepository = userRepository;
     }
 
     [HttpGet("singleton")]
@@ -49,6 +52,13 @@ public class UserController : ControllerBase
     public ActionResult GetAllNoInterface()
     {
         var response = _noInterfaceUserService.GetAll();
+        return Ok(response);
+    }
+
+    [HttpGet("repository")]
+    public ActionResult GetAllRepository()
+    {
+        var response = _userRepository.GetAll();
         return Ok(response);
     }
 }
