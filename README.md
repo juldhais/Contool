@@ -7,12 +7,12 @@ Automatic service register for Microsoft.Extensions.DependencyInjection
 
 ### .NET CLI
 ```
-dotnet add package Contool --version 1.0.0
+dotnet add package Contool
 ```
 
 ### Package Manager
 ```
-NuGet\Install-Package Contool -Version 1.0.0
+NuGet\Install-Package Contool
 ```
 
 
